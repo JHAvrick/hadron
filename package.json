@@ -1,0 +1,26 @@
+{
+  "name": "phaser-webpack-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build": "webpack -p",
+    "server": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-es6-promise": "^1.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.15.3",
+    "webpack": "^2.6.1"
+  },
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "lodash": "^4.17.4"
+  }
+}

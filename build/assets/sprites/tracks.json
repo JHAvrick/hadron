@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "glowTracks_0",
+	"frame": {"x":1205,"y":753,"w":353,"h":706},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":22,"w":353,"h":706},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_1",
+	"frame": {"x":1205,"y":1,"w":269,"h":750},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":134,"y":0,"w":269,"h":750},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_2",
+	"frame": {"x":1476,"y":1,"w":208,"h":750},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":245,"y":0,"w":208,"h":750},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_3",
+	"frame": {"x":1560,"y":753,"w":176,"h":750},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":327,"y":0,"w":176,"h":750},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_4",
+	"frame": {"x":1686,"y":1,"w":154,"h":750},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":399,"y":0,"w":154,"h":750},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_5",
+	"frame": {"x":1738,"y":753,"w":138,"h":750},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":465,"y":0,"w":138,"h":750},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "glowTracks_6",
+	"frame": {"x":1205,"y":1461,"w":3,"h":3},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":3},
+	"sourceSize": {"w":625,"h":750}
+},
+{
+	"filename": "tracks",
+	"frame": {"x":1,"y":1,"w":1202,"h":1500},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":1202,"h":1500},
+	"sourceSize": {"w":1250,"h":1500}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tracks.png",
+	"format": "RGBA8888",
+	"size": {"w":1877,"h":1504},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:423c28a9f6fbb4bf46ee49e9d736eb62:b5aecab698d00079f019847a493e0831:f224ed406a0747a9aaf05a7ee2f2b15b$"
+}
+}

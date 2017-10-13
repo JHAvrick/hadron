@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "gradientFour",
+	"frame": {"x":1,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+{
+	"filename": "gradientOne",
+	"frame": {"x":453,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+{
+	"filename": "gradientThree",
+	"frame": {"x":905,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+},
+{
+	"filename": "gradientTwo",
+	"frame": {"x":1357,"y":1,"w":450,"h":800},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":450,"h":800},
+	"sourceSize": {"w":450,"h":800}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "misc.png",
+	"format": "RGBA8888",
+	"size": {"w":1808,"h":802},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:397799a3486d3874d5e780186e198037:94fbfd5e63b3506ee40b7a865b4c4d2b:8940225683741d51cffc2e8ee1e8f353$"
+}
+}
