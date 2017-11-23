@@ -12,18 +12,18 @@ class Boot extends Phaser.State {
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
 
-
         } else {
 
             //  Same goes for mobile settings.
             //  In this case we're saying "scale the game, no lower than 480x260 and no higher than 1024x768"
-            //this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
-            //this.scale.setMinMax(600, 900, 800, 1200);
+            this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
             //this.scale.forceLandscape = true;
             this.scale.pageAlignHorizontally = true;
             this.scale.pageAlignVertically = true;
+            //this.scale.setMinMax(720, 1100, 1280 / 1.5 , 1280);
 
-        }	
+        }
+
 	}
 
     preload() {

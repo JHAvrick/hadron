@@ -1,18 +1,27 @@
 import Particle from 'main/particle.js';
 
 class ParticlePool extends Phaser.Group {
-	constructor(game, count){
+	constructor(game, count, board){
 		super(game);
 		this.game = game;
+		this.board = board;
 
 		this.make(count || 0);
 		this.active = [];
 
 	}
 
+	_handleParticleDead(particle){
+		this.removeChild(particle);
+		this.make(1);
+	}
+
 	make(count){
 		for (var i = 0; i < count; i++){
-			this.addChild(new Particle(this.game));
+			var newParticle = new Particle(this.game, this.board.CX, this.board.CY);
+					newParticle.onDead.add(this._handleParticleDead, this);
+
+			this.addChild(newParticle);
 		}
 	}
 

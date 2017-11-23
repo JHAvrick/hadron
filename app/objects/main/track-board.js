@@ -7,8 +7,10 @@ class TrackBoard {
 		this.forge = this.game.plugins.forge;
 
 		//Get the center x and y
-		this.CX = -1 * ((2500 / 2) - this.game.width);
+		this.CX = (-1 * ((2500 / 2) - this.game.width)) - (window.extraWidth / 2);
 		this.CY = this.game.world.centerY;
+
+		console.log((window.extraWidth / 2));
 		
 		//generate the board sprites
 		this.trackSprite = this.forge.sprite(TrackSprites.MAIN, this.CX, this.CY, 'tracks', 'tracks');
@@ -22,7 +24,7 @@ class TrackBoard {
 
 	flash(index){
 		//Audio FX
-		this.game.plugins.audio.play('move', false, 0.5);
+		this.game.plugins.audio.play('move', false, 0.4);
 
 		this.flashSprites[index].alpha = 1;
 		this.game.add.tween(this.flashSprites[index]).to( { alpha: 0 } , 500, Phaser.Easing.Quadratic.In, true);

@@ -4,7 +4,7 @@ import SpriteForge from 'util/sprite-forge.js';
 import SettingsManager from 'util/settings-manager.js';
 import StatsManager from 'util/stats-manager.js';
 import CameraShake from 'fx/camera-shake.js';
-
+import ScoreRequest from 'results/score-request.js';
 
 class Preload extends Phaser.State {
 
@@ -18,7 +18,7 @@ class Preload extends Phaser.State {
 		this.game.plugins.stats = this.game.plugins.add(new StatsManager(this.game, 'hadronStats'));
 
 		this.game.plugins.settings.default({
-			sound: true,
+			muted: false,
 			showTutorial: true
 		});
 
@@ -30,12 +30,13 @@ class Preload extends Phaser.State {
 			score: 0
 		});
 		
-		//this.loadingLabel = this.game.add.bitmapText(this.game.width / 2, this.game.height / 2, 'Modeka', 'Loading...', 60);
-		
+		//Set the initial sound state
+		this.game.sound.mute = this.game.plugins.settings.get('muted');
+
+		//Loading status label
 		let style = { font: "30px Arial", fill: "#ffffff", align: "center" };
 		this.loadingLabel = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "L O A D I N G  F I L E S . . .", style);
 		this.loadingLabel.anchor.setTo(.5, .5);
-
 	}
 
 
@@ -65,6 +66,7 @@ class Preload extends Phaser.State {
 		this.game.load.audio('hitSix', ['assets/audio/hit_six.ogg', 'assets/audio/hit_six.mp3']);
 		this.game.load.audio('hitSeven', ['assets/audio/hit_seven.ogg', 'assets/audio/hit_seven.mp3']);
 		this.game.load.audio('hitEight', ['assets/audio/hit_eight.ogg', 'assets/audio/hit_eight.mp3']);
+		this.game.load.audio('gameover', ['assets/audio/gameover.ogg', 'assets/audio/gameover.mp3']);
 
 
 		this.game.load.onLoadComplete.addOnce(() => {
@@ -74,8 +76,6 @@ class Preload extends Phaser.State {
 	}
 
 	create(){
-
-
 		this.game.sound.setDecodedCallback('coldwire', () => {
 			this.game.state.start('Menu');
 		});

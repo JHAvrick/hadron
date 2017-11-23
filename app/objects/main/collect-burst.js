@@ -1,10 +1,10 @@
 class CollectBurst extends Phaser.Particles.Arcade.Emitter {
 	constructor(game){
-		super(game, 0, 0, 200);
+		super(game, 0, 0, 50);
 		this.game = game;
 
 		this.emitter = this.game.add.emitter(0, 0, 100);
-    this.makeParticles(['menu'], ['confettiOne', 'confettiTwo', 'confettiThree']);
+    this.makeParticles(['sprites'], ['confettiOne', 'confettiTwo', 'confettiThree']);
 		this.setScale(1, 0.1, 1, 0.1, 10000, Phaser.Easing.Quintic.Out);
 		this.minParticleSpeed.set(-150, -1000);
 		this.gravity = -300;
@@ -29,6 +29,16 @@ class CollectBurst extends Phaser.Particles.Arcade.Emitter {
 
 		this.minParticleSpeed.set(-150, -1000);
 		this.gravity = -300;
+
+		this.start(true, 2000, null, 10);		
+	}
+
+	burstDown(x, y){
+		this.x = x;
+		this.y = y;
+
+		this.minParticleSpeed.set(-150, 1100);
+		this.gravity = 300;
 
 		this.start(true, 2000, null, 10);		
 	}

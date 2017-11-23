@@ -33,15 +33,15 @@ class TutorialTwo extends Phaser.State {
 		let rechargeLabel = forge.bitmapText(TutorialSprites.RECHARGE_LABEL, '60%', '70%', 'Modeka');
 		
 
-		let hex = forge.sprite(TutorialSprites.HEX, '20%', '45%', 'sprites', 'hexShape');
-		let tri = forge.sprite(TutorialSprites.TRI, '40%', '45%', 'sprites', 'triShape');
-		let orb = forge.sprite(TutorialSprites.ORB, '60%', '45%', 'sprites', 'orbShape');
-		let cube = forge.sprite(TutorialSprites.CUBE, '80%', '45%', 'sprites', 'cubeShape');
+		let hex = forge.sprite(TutorialSprites.HEX, '50%', '45%', 'sprites', 'hexShape');
+		//let tri = forge.sprite(TutorialSprites.TRI, '40%', '45%', 'sprites', 'triShape');
+		//let orb = forge.sprite(TutorialSprites.ORB, '60%', '45%', 'sprites', 'orbShape');
+		//let cube = forge.sprite(TutorialSprites.CUBE, '80%', '45%', 'sprites', 'cubeShape');
 
-		let flashHex = forge.sprite(TutorialSprites.FLASH, '80%', '70%', 'sprites', 'hexShape');
-		let flashTri = forge.sprite(TutorialSprites.FLASH, '60%', '70%', 'sprites', 'triShape');
-		let flashOrb = forge.sprite(TutorialSprites.FLASH, '40%', '70%', 'sprites', 'orbShape');
-		let flashCube = forge.sprite(TutorialSprites.FLASH, '20%', '70%', 'sprites', 'cubeShape');
+		//let flashHex = forge.sprite(TutorialSprites.FLASH, '80%', '70%', 'sprites', 'hexShape');
+		let flashTri = forge.sprite(TutorialSprites.FLASH, '50%', '70%', 'sprites', 'triShape');
+		//let flashOrb = forge.sprite(TutorialSprites.FLASH, '40%', '70%', 'sprites', 'orbShape');
+		//let flashCube = forge.sprite(TutorialSprites.FLASH, '20%', '70%', 'sprites', 'cubeShape');
 
 		this.header = new FadeTransition({ game: this.game, duration: 1000,
 			enterSlideX: layout.ratioX(75),
@@ -62,7 +62,7 @@ class TutorialTwo extends Phaser.State {
 			duration: 1000,
 			enterSlideX: layout.ratioX(75),
 			exitSlideX: -layout.ratioX(75),
-			items: [hex, tri, orb, cube]
+			items: [hex]
 		});
 
 		this.goalThree = new FadeTransition({
@@ -78,12 +78,13 @@ class TutorialTwo extends Phaser.State {
 			duration: 1000,
 			enterSlideX: layout.ratioX(75),
 			exitSlideX: -layout.ratioX(75),
-			items: [flashHex, flashTri, flashOrb, flashCube]
+			items: [flashTri]
 		});
 
 		FadeTransition.chainEnter([this.header, this.goalTwo, this.specificColors, this.goalThree, this.anyColors]);
 
-		let backBtn = new StateNavButton(this.game, 'TutorialOne', '<< Back', 'left', 500);
+		const returnState = this.game.device.desktop ? 'TutorialOneDesktop' : 'TutorialOne';
+		let backBtn = new StateNavButton(this.game, returnState, '<< Back', 'left', 500);
 		let nextBtn = new StateNavButton(this.game, 'TutorialThree', 'Next >>', 'right', 500);
 				//nextBtn.events.onInputDown.add(this.pageTwo.exit, this.pageTwo);
 

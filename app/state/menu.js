@@ -1,5 +1,6 @@
 import MenuSprites from 'config/menu-sprites.js'; //property configs for menu sprites
 import MenuButton from 'menu/menu-button.js';
+import AudioToggle from 'util/audio-toggle.js';
 
 import FadeTransition from 'fx/fade-transition.js';
 import ParticleDrift from 'fx/particle-drift.js';
@@ -12,6 +13,9 @@ class Menu extends Phaser.State {
 		var forge = this.game.plugins.forge;
 		this.settings = this.game.plugins.settings;
 		this.audio = this.game.plugins.audio;
+
+		//Audio toggle
+		this.audioToggle = new AudioToggle(this.game, 'menu', 'unmuted', 'muted');
 
 		/*	-------------------FX / AMBIENCE--------------------------------------------------------------------------------------------
 				RGB: 				A light RGB split for retro / low-fi effect
@@ -26,7 +30,6 @@ class Menu extends Phaser.State {
 
 		//Particle drift effect
 		new ParticleDrift(this.game, [RGB]);
-
 
 		/*	-------------------TITLE REVEAL--------------------------------------------------------------------------------------------
 				Title: 			Fades in and slides down by 20% of game height 
@@ -68,8 +71,10 @@ class Menu extends Phaser.State {
 		this.game.camera.fade(0x000000, 1500);
 		this.game.camera.onFadeComplete.addOnce(() => {
 
-			if (this.settings.get('showTutorial')) this.game.state.start('TutorialOne');
-			else this.game.state.start('Main');
+			if (this.settings.get('showTutorial'))
+				this.game.state.start(this.game.device.desktop ? 'TutorialOneDesktop' : 'TutorialOne');
+			 else 
+				this.game.state.start('Main');
 			
 		});
 	}
@@ -77,7 +82,7 @@ class Menu extends Phaser.State {
 	handleStartTutorial(){
 		this.game.camera.fade(0x000000, 1500);
 		this.game.camera.onFadeComplete.addOnce(() => {
-				this.game.state.start('TutorialOne');
+			this.game.state.start(this.game.device.desktop ? 'TutorialOneDesktop' : 'TutorialOne');
 		});
 	}
 

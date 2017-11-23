@@ -1,7 +1,5 @@
-import { Howl } from 'howler';
-
 class AudioManager extends Phaser.Plugin {
-	constructor(game){
+	constructor(game, showToggle){
 		super(game);
 		this.game = game;
 
@@ -10,7 +8,6 @@ class AudioManager extends Phaser.Plugin {
 
 		this._instances = {};
 		this._groups = {};
-
 	}
 
 	addAudioGroup(groupKey, audioKeys){ this._groups[groupKey] = new AudioGroup(this.game, audioKeys); }

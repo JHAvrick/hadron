@@ -2,7 +2,7 @@
 
 {
 	"filename": "confettiOne",
-	"frame": {"x":841,"y":497,"w":40,"h":40},
+	"frame": {"x":575,"y":659,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
@@ -10,7 +10,7 @@
 },
 {
 	"filename": "confettiThree",
-	"frame": {"x":883,"y":497,"w":40,"h":40},
+	"frame": {"x":617,"y":659,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
@@ -18,39 +18,15 @@
 },
 {
 	"filename": "confettiTwo",
-	"frame": {"x":837,"y":685,"w":40,"h":40},
+	"frame": {"x":575,"y":701,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "exit",
-	"frame": {"x":837,"y":567,"w":116,"h":116},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":14,"y":14,"w":116,"h":116},
-	"sourceSize": {"w":144,"h":144}
-},
-{
-	"filename": "playAgain",
-	"frame": {"x":841,"y":385,"w":109,"h":110},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":17,"y":17,"w":109,"h":110},
-	"sourceSize": {"w":144,"h":144}
-},
-{
-	"filename": "reportText",
-	"frame": {"x":435,"y":659,"w":400,"h":91},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":18,"y":25,"w":400,"h":91},
-	"sourceSize": {"w":432,"h":144}
-},
-{
 	"filename": "statsCube",
-	"frame": {"x":659,"y":385,"w":180,"h":180},
+	"frame": {"x":393,"y":659,"w":180,"h":180},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":18,"y":18,"w":180,"h":180},
@@ -58,7 +34,7 @@
 },
 {
 	"filename": "statsHex",
-	"frame": {"x":659,"y":1,"w":198,"h":190},
+	"frame": {"x":1,"y":659,"w":198,"h":190},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":9,"y":5,"w":198,"h":190},
@@ -66,7 +42,7 @@
 },
 {
 	"filename": "statsOrb",
-	"frame": {"x":659,"y":193,"w":190,"h":190},
+	"frame": {"x":201,"y":659,"w":190,"h":190},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":13,"y":13,"w":190,"h":190},
@@ -79,22 +55,14 @@
 	"trimmed": true,
 	"spriteSourceSize": {"x":22,"y":22,"w":656,"h":656},
 	"sourceSize": {"w":700,"h":700}
-},
-{
-	"filename": "statsTitle",
-	"frame": {"x":1,"y":659,"w":432,"h":67},
-	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":0,"y":3,"w":432,"h":67},
-	"sourceSize": {"w":432,"h":72}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "results.png",
 	"format": "RGBA8888",
-	"size": {"w":954,"h":751},
+	"size": {"w":658,"h":850},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:3f78ad7c4eeac4b3650f5a9fb022a86c:5c7ab06bee79cd76d2c8311eeb74c4a2:6ff870ccc0e52152b2b735505eb5f6a8$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4a0b75550b68715ac2c4d6bb70faf1b7:ab126f0f183227092aca5bb81d81ac71:6ff870ccc0e52152b2b735505eb5f6a8$"
 }
 }

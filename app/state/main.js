@@ -4,7 +4,6 @@ import RGBSplitFilter from 'fx/rgb-split-filter.js';
 import FadeTransition from 'fx/fade-transition.js';
 import CollectBurst from 'main/collect-burst.js';
 import PointIndicator from 'display/point-indicator.js';
-
 import BitmapTextCounter from 'display/bitmaptext-counter.js';
 import Bumper from 'main/bumper.js';
 import TrackBoard from 'main/track-board.js';
@@ -16,7 +15,7 @@ import ShapeColorIndicator from 'main/shape-color-indicator.js';
 import LifeIndicator from 'main/life-indicator.js';
 import PauseMenu from 'main/pause-menu.js';
 import WaveRater from 'main/wave-rater.js';
-
+import TopTenCheck from 'main/top-ten-check.js';
 
 class Main extends Phaser.State {
 
@@ -30,7 +29,6 @@ class Main extends Phaser.State {
 		//State
 		this.gameIsPaused = false;
 		this.gameIsOver = false; //holds the color/shape rules for a given wave
-
 	}
 
 	create(){
@@ -46,7 +44,6 @@ class Main extends Phaser.State {
 			---------------------------------------- FX ---------------------------------------------
 		*/
 		this.game.stage.filters = [new RGBSplitFilter({x: 2, y: 2}, {x: 1, y: -1}, {x: -1, y: 2})];
-
 		this.invalidBurstFX = new CollectBurst(this.game); //tint is red by default
 		this.validBurstFX = new CollectBurst(this.game);
 		this.validBurstFX.tintMode = 'random';
@@ -61,12 +58,13 @@ class Main extends Phaser.State {
 		this.points = new PointIndicator(this.game);
 		this.ramp = new RampEngine(RampModel); //handles increasing difficulty and game logistics
 		this.board = new TrackBoard(this.game); //handles placement of player and particles
-		this.pool = new ParticlePool(this.game, 100); //holds the reusable particles
+		this.pool = new ParticlePool(this.game, 50, this.board); //holds the reusable particles
 		this.sequencer = new ParticleSequencer(this.game, this.board, this.ramp, this.pool); //parses and spawns particles
 		this.collider = new ParticleCollider(this.game);
 		this.player = new Player(this.game, this.board); //the user-controlled player
 		this.indicator = new ShapeColorIndicator(this.game);
 		this.meter = new LifeIndicator(this.game);
+		this.topTenCheck = new TopTenCheck();
 		this.score = new BitmapTextCounter(this.game, this.game.width - 10, this.game.height - 5, 'Modeka', '000000', 50);
 		this.score.anchor.setTo(1, 1);
 		this.score.usePadding("00000");
@@ -132,6 +130,9 @@ class Main extends Phaser.State {
 		this.sequencer.end();
 		this.pool.clearExisting();
 		this.ramp.increment('difficultyStepTrigger');
+
+		//Update pause menu stats
+		this.pauseMenu.setWaveCount(this.ramp.value('wavesTotal'));
 		
 		//Show rating
 		this.rater.rateWave();
@@ -148,13 +149,22 @@ class Main extends Phaser.State {
 		this.pool.clearExisting();
 		this.updateScores();
 
+		//
+		this.audio.play('gameover');
+
 		this.audio.fadeOut('bluewave', 1900);
 		this.shake.start(1000);
-		this.game.camera.fade(0x000000, 2000);
+		this.game.camera.fade(0xff0000, 2500);
 		this.game.camera.onFadeComplete.addOnce(() => {
 				this.shake.reset();
-				this.game.state.start('Results');
-		});		
+
+				//If the player scored in the top ten, go to InputAlias page
+				if (this.topTenCheck.isTopTen(this.ramp.value('scoreTotal')))
+					this.game.state.start('InputAlias');
+				else 
+					this.game.state.start('Results');
+		});	
+
 	}
 
 	/*
@@ -184,7 +194,8 @@ class Main extends Phaser.State {
 		this.points.show(particle.x - 50, particle.y - 50, '+ 1 0');
 
 		//Particle effect
-		this.validBurstFX.burstUp(particle.x, particle.y - 30);
+		if (particle.speed > 0) this.validBurstFX.burstUp(particle.x, particle.y - 30);
+		else this.validBurstFX.burstDown(particle.x, particle.y + 30);
 
 		this.ramp.increment('currentOrbsCleared');
 		this.ramp.increment('scoreTotal', 10);
@@ -196,7 +207,8 @@ class Main extends Phaser.State {
 		this.shake.start(); //shake effect
 
 		//Particle effect
-		this.invalidBurstFX.burstUp(particle.x, particle.y - 30);
+		if (particle.speed > 0) this.invalidBurstFX.burstUp(particle.x, particle.y - 30);
+		else this.invalidBurstFX.burstDown(particle.x, particle.y + 30);
 
 		//Audio FX
 		this.audio.play('miss');
@@ -205,8 +217,7 @@ class Main extends Phaser.State {
 		this.points.show(particle.x - 60, particle.y, '- 2 0', 1000, 0xff0000);
 
 		//Destroy the particle and add a new one to the pool
-		particle.die(); 
-		this.pool.make(1);
+		particle.die();
 
 		//Rating stats
 		if (missed) this.rater.orbMissed();
@@ -219,17 +230,18 @@ class Main extends Phaser.State {
 	}
 
 	handleRechargeOrb(particle){
-		particle.die(); 
-		this.pool.make(1);
-
 		//Audio FX
 		this.audio.play('recharge');
 
 		//Particle effect
-		this.validBurstFX.burstUp(particle.x, particle.y - 30);
+		if (particle.speed > 0) this.validBurstFX.burstUp(particle.x, particle.y - 30);
+		else this.validBurstFX.burstDown(particle.x, particle.y + 30);
 
 		//Points throwup
 		this.points.show(particle.x - 60, particle.y, '+ 2 5');
+
+		//Kill the particlee
+		particle.die();
 
 		//Increment appropriate values
 		this.ramp.increment('stabilityCount', 1);
@@ -257,9 +269,9 @@ class Main extends Phaser.State {
 	}
 
 	handleBottomBumperHit(particle){
-		if (particle.speed < 0 && particle.type === 2)
+		if (particle.speed < 0 && Math.abs(particle.type) === 2)
 			this.handleInvalidOrb(particle, true);
-		else if (particle.speed < 0 && particle.type === 3)
+		else if (particle.speed < 0 && Math.abs(particle.type) === 3)
 			this.rater.rechargeMissed();
 	}
 

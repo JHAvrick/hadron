@@ -1,6 +1,6 @@
 const ResultsSprites = {
 	HEADER: {
-		"alpha" : 1,
+		"alpha" : 0,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
 		"fontSize" : 90,

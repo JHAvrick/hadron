@@ -10,6 +10,9 @@ class StateNavButton extends Phaser.Sprite {
 		//Fade to black time
 		this._fadeTime = fadeTime;
 
+		//Called before switching states, can return false to abort
+		this._onBeforeGoToState = function(){ return true };
+
 		//Set the alignment
 		if (align === 'left') this.alignLeft();
 		else this.alignRight();
@@ -20,7 +23,13 @@ class StateNavButton extends Phaser.Sprite {
 		this.game.add.existing(this);
 	}
 
+	set onBeforeGoToState(func){
+		this._onBeforeGoToState = func;
+	}
+
 	goToState(){
+		if (!this._onBeforeGoToState()) return;
+
 		this.game.camera.fade(0x000000, this._fadeTime);
 		this.game.camera.onFadeComplete.addOnce(() => {
 				this.game.state.start(this._toState);

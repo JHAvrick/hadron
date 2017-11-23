@@ -6,16 +6,13 @@ import RampEngine from 'util/ramp-engine.js';
 const orbsPerWave = 6; //Wraps on the seventh
 
 //Total # of waves is the product of the two variables below
-const difficultySteps = 40; //Total number of times the difficulty can be raised
+const difficultySteps = 50; //Total number of times the difficulty can be raised
 const raiseDiffucltyAfterWaves = 1; //Number of waves before progressing difficulty, wraps on the 2nd
 
-const easing = RampEngine.EaseValue.Easing.easeInOutQuad;
+const easing = RampEngine.EaseValue.Easing.easeOutQuad;
 
 const RampModel = {
 	values: {
-
-		//-------------------------------- BEST COUNTS ---------------------------------------
-
 		//-------------------------------- SCORE COUNTS ------------------------------------
 
 		//The total number of orbs that have been cleared during this match
@@ -39,10 +36,10 @@ const RampModel = {
 			step: 10
 		},
 
-		//The number of orbs that have been cleared during this wave
+		//The number waves completed
 		wavesTotal: {
 			type: RampEngine.NormalValue,
-			value: 0,
+			value: 1,
 			step: 1
 		},
 
@@ -60,10 +57,10 @@ const RampModel = {
 		//Life meter count, when this reaches zero the player loses
 		stabilityCount: {
 			type: RampEngine.ClampValue,
-			value: 20,
+			value: 16,
 			step: 1,
 			min: 1,
-			max: 20
+			max: 16
 		},
 
 		//----------------------- DIFFICULTY TRIGGERS --------------------------
@@ -77,10 +74,10 @@ const RampModel = {
 		},
 
 		//Incremented By: difficultyStepTrigger
-		//Increments: the patternBankIndex whenever it is divisible by four
+		//Increments: the patternBankIndex whenever it is divisible by 7
 		patternIncrementor: {
 			type: RampEngine.DivisibleValue,
-			divisor: 4,
+			divisor: 7,
 			value: 0
 		},
 
@@ -95,15 +92,15 @@ const RampModel = {
 		minOrbSpeed: {
 			type: RampEngine.EaseValue,
 			start: 25,
-			end: 100,
+			end: 45,
 			steps: difficultySteps,
 			easing: easing
 		},
 
 		maxOrbSpeed: {
 			type: RampEngine.EaseValue,
-			start: 35,
-			end: 125,
+			start: 30,
+			end: 50,
 			steps: difficultySteps,
 			easing: easing
 		},
@@ -111,7 +108,7 @@ const RampModel = {
 		orbSpawnInterval: {
 			type: RampEngine.EaseValue,
 			start: 700,
-			end: 600,
+			end: 400,
 			steps: difficultySteps,
 			easing: easing
 		}

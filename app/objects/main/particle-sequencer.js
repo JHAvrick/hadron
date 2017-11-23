@@ -6,7 +6,6 @@ import SequencePatterns from 'main/sequence/sequence-patterns.js';
 	The ParticleSequencer synthesizes the ramp-engine state and the contents
 	of several config files (palette, shapes, patterns) into a sequence which 
 	represents the current difficulty state of the game.
-
 */
 class ParticleSequencer {
 	constructor(game, trackBoard, rampEngine, particlePool){
@@ -19,10 +18,15 @@ class ParticleSequencer {
 	}
 
 	_buildSequence(){
-
 		var palette = Phaser.ArrayUtils.getRandomItem(Palette);
 		var patternMeta = this._getRandomPattern();
 		var shapes = Shapes;
+
+		var minSpeed = this.ramp.value('minOrbSpeed');
+		var maxSpeed = this.ramp.value('maxOrbSpeed');
+		var nonVariableSpeed = minSpeed + ((maxSpeed - minSpeed)  / 2);// used if the speed is NOT variable
+
+		console.log(patternMeta.pattern);
 
 		return {
 			palette: palette,
@@ -33,8 +37,8 @@ class ParticleSequencer {
 			shuffle: patternMeta.shuffle,
 			patternIndex: 0,
 			interval: this.ramp.value('orbSpawnInterval'),
-			minSpeed: this.ramp.value('minOrbSpeed'),
-			maxSpeed: this.ramp.value('maxOrbSpeed')
+			minSpeed: patternMeta.variableSpeed ? minSpeed : nonVariableSpeed,
+			maxSpeed: patternMeta.variableSpeed ? maxSpeed : nonVariableSpeed
 		}
 	}
 
@@ -80,7 +84,6 @@ class ParticleSequencer {
 			pattern: patternMeta.shuffle ? Phaser.ArrayUtils.shuffle(patternMeta.pattern) : patternMeta.pattern,
 			shuffle:  patternMeta.shuffle
 		}
-
 	}
 
 
@@ -157,7 +160,7 @@ class ParticleSequencer {
 
 	//Check's the particles type and calls the appropriate callback route
 	isValidParticle(particle, callbacks){
-		switch (particle.type){
+		switch (Math.abs(particle.type)){
 			case 1: callbacks.onInvalid(particle); break;
 			case 2: callbacks.onValid(particle); break;
 			case 3: callbacks.onRecharge(particle); break;
@@ -172,19 +175,16 @@ class ParticleSequencer {
 			var next = row[i]; 
 			if (next !== 0){
 
-			let shape = this._resolveShape(next);
-			let color = this._resolveColor(next);
+			let shape = this._resolveShape(Math.abs(next));
+			let color = this._resolveColor(Math.abs(next));
 
-			//Set speed
-			if (this.sequence.variableSpeed)
-				var speed = (next / Math.abs(next)) * this.game.rnd.integerInRange(this.sequence.minSpeed, this.sequence.maxSpeed);
-			else 
-				var speed = this.sequence.minSpeed + ((this.sequence.maxSpeed - this.sequence.minSpeed)  / 2); //halfway between min and max
+			// 1 or -1, denoting the direction the particle should travel
+			let speedFactor =  (next / Math.abs(next));
+			let speed = speedFactor * this._floatInRange(this.sequence.minSpeed, this.sequence.maxSpeed, 4);
 
 			//Get a particle object from the pool
 			var particle = this.pool.getFirstExists(false);
 					particle.start(next, shape, color, speed, this.board.getRadius(i));
-
 			}
 		}
 
@@ -195,9 +195,11 @@ class ParticleSequencer {
 		} else {
 			this.sequence.patternIndex += 1;
 		}
-
 	}
 
+	_floatInRange(minValue = 0, maxValue = 1, precision = 4){
+		return parseFloat(Math.min(minValue + (Math.random() * (maxValue - minValue)),maxValue).toFixed(precision));
+	}
 
 }
 

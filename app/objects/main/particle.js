@@ -1,7 +1,7 @@
 import Animations from 'config/animations.js';
 
 class Particle extends Phaser.Sprite {
-	constructor(game){
+	constructor(game, cx, cy){
 		super(game, -1000, -1000, 'sprites');
 			this.game = game;
 			this.anchor.setTo(.5, .5);
@@ -16,8 +16,8 @@ class Particle extends Phaser.Sprite {
 			this.type = 1;
 			this.color = 0xffffff; //A tint value
 			this.shape = ''; //hex, tri, orb, or cube
-			this.cx = -1 * ((2500 / 2) - this.game.width); //centerX of board
-			this.cy = this.game.world.centerY; //centerY of board
+			this.cx = cx; //centerX of board
+			this.cy = cy; //centerY of board
 			this.maxSpeed = .03;
 			this.speed = 0.0065; //how many radians to move per update
 			this.radius = 0; //the distance from the center of the board
@@ -26,6 +26,9 @@ class Particle extends Phaser.Sprite {
 			//Flags
 			this.isPaused = false;
 			this.collisionLocked = false;
+
+			//Signals
+			this.onDead = new Phaser.Signal();
 
 			//Animations
 			var forge = game.plugins.forge;
@@ -41,7 +44,12 @@ class Particle extends Phaser.Sprite {
 	}
 
 	_handleEnterBounds(){
-		this.hasEnteredBounds = true;
+		//The phaser signals for entering and exiting bounds seem to trigger simultaneously in some scenarios,
+		//causing a premature onExitBounds event
+		//Timeout is to delay settin tthe hasEnteredBounds flag until the particle is surely in bounds
+		setTimeout(() => {
+			this.hasEnteredBounds = true;
+		}, 100);
 	}
 
 	_handleExitBounds(){
@@ -67,7 +75,6 @@ class Particle extends Phaser.Sprite {
 	}
 
 	start(type, shape, color, speed, radius){
-		
 		//Update state
 		this.type = type;
 		this.shape = shape;
@@ -90,7 +97,7 @@ class Particle extends Phaser.Sprite {
 	//and not-too-hackish work-around (just destroy the sprite and make a new one for the pool),
 	//I do not feel the need to resolve the exists/bounds issue.
 	die(){
-		//TODO: Animation on destroy
+		this.onDead.dispatch(this);
 		this.destroy();
 	}
 

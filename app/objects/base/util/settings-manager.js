@@ -5,7 +5,21 @@ class SettingsManager extends Phaser.Plugin {
 
 		this._storeKey = storeKey;
 		this._settings = this._fetchStore(storeKey);
+		this._guid = this.getGUID();
 	}
+
+	//This code from https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+	_generateGUID (){
+		function s4() {
+		  return Math.floor((1 + Math.random()) * 0x10000)
+		    .toString(16)
+		    .substring(1);
+		}
+
+	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+	    s4() + '-' + s4() + s4() + s4();
+	}
+
 
 	_fetchStore(storeKey){
 		if (localStorage.getItem(storeKey))
@@ -17,6 +31,22 @@ class SettingsManager extends Phaser.Plugin {
 	//The stats are stored as a stringified array rather than an object
 	_commitStore(){
 		localStorage.setItem(this._storeKey, JSON.stringify(this._settings));
+	}
+
+	getGUID(){
+		var guid = localStorage.getItem('!!guid!!');
+
+		if (guid){
+
+			return JSON.parse(guid);
+
+		} else {
+
+			var newGUID = this._generateGUID();
+			localStorage.setItem('!!guid!!', JSON.stringify(newGUID));
+
+			return newGUID;
+		}
 	}
 
 	default(defaults){

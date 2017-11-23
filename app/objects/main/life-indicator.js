@@ -3,8 +3,8 @@ class LifeIndicator {
 		this.game = game;
 		this.layout = game.plugins.layout;
 
-		this._totalLife = 20;
-		this._life = 20;
+		this._totalLife = 16;
+		this._life = 16;
 
 		this._bar = this.game.add.sprite(this.game.width - 20, this.game.height - 65, 'sprites', 'fill');
 		this._bar.scale.x = .5;
@@ -23,7 +23,9 @@ class LifeIndicator {
 		.onUpdateCallback(() => { 
 			this._bar.tint = Phaser.Color.getRandomColor(); 
 		}).start()
-		.onComplete.add(() => { this._bar.tint = 0xffffff; });
+		.onComplete.add(() => { 
+			this._bar.tint = Phaser.Color.interpolateColor(0xff0000, 0x00ff00, this._totalLife, this._life);
+		});
 	}
 
 	enter(){

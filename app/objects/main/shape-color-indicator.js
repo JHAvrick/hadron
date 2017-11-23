@@ -2,10 +2,12 @@ import Wave from 'fx/wave.js';
 
 class ShapeColorIndicator extends Phaser.Sprite {
 	constructor(game){
-		super(game, game.width / 9, game.height / 2, 'sprites');
+		super(game, game.width * .1, game.height / 2, 'sprites');
 		this.game = game;
 		this.anchor.setTo(.5, .5);
 		this.alpha = 0;
+
+		//var extraScale = (720 + window.extraWidth)
 
 		this._revealFX = new IndicatorTransition(this.game);
 		this._waveFX = new Wave(this.game, this.x, this.y, 'sprites', 'orb_00');

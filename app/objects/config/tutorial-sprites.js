@@ -7,6 +7,41 @@ const TutorialSprites = {
 		"text" : "Tap left or right to move."
 	},
 
+	CONTROLS_DESKTOP: {
+		"alpha" : 0,
+		"anchor.x" : .5,
+		"anchor.y" : .5,
+		"fontSize" : 76,
+		"text" : "Use the arrow keys to move."
+	},
+
+	KEY_UP: {
+		"alpha" : 0,
+		"anchor.x" : .5,
+		"anchor.y" : .5
+	},
+
+	KEY_DOWN: {
+		"alpha" : 0,
+		"anchor.x" : .5,
+		"anchor.y" : .5,
+		"scale.y" : -1
+	},
+
+	KEY_LEFT: {
+		"alpha" : 0,
+		"anchor.x" : .5,
+		"anchor.y" : .5,
+		"angle" : -90
+	},
+
+	KEY_RIGHT: {
+		"alpha" : 0,
+		"anchor.x" : .5,
+		"anchor.y" : .5,
+		"angle" : 90
+	},
+
 	GOAL: {
 		"alpha" : 0,
 		"anchor.x" : .5,
@@ -22,7 +57,7 @@ const TutorialSprites = {
 		"anchor.y" : .5,
 		"fontSize" : 56,
 		"align": 'center',
-		"text" : "Collect orbs of a specific color . . ."
+		"text" : "Sometimes a specific color . . ."
 	},
 
 	GOAL_THREE: {
@@ -31,7 +66,7 @@ const TutorialSprites = {
 		"anchor.y" : .5,
 		"fontSize" : 56,
 		"align": 'center',
-		"text" : ". . . or any color, when flashing."
+		"text" : ". . . or any color, when flashing"
 	},
 
 	GOAL_FOUR: {

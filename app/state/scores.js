@@ -5,6 +5,7 @@ import FadeTransition from 'fx/fade-transition.js';
 import ScoresSprites from 'config/scores-sprites.js';
 
 import StateNavButton from 'menu/state-nav-button.js';
+import ScoreRequest from 'results/score-request.js';
 
 class Scores extends Phaser.State {
 
@@ -14,6 +15,7 @@ class Scores extends Phaser.State {
 		//convenience accessors for plugins
 		var layout = this.game.plugins.layout;
 		var forge = this.game.plugins.forge;
+		var stats = this.game.plugins.stats;
 
 		//FX
 		var rgb = new RGBSplitFilter();
@@ -24,12 +26,43 @@ class Scores extends Phaser.State {
 
 		//Labels
 		var header = forge.bitmapText(ScoresSprites.BEST_HEADER, '50%', '10%', 'Modeka');
+		
+		//Fetch rank and display when ready
+		var scoreRequest = new ScoreRequest();
+				scoreRequest.fetchRank(stats.getBest('score')).then((rank) => {
+					if (this.game.state.current != "Scores") return;
+
+					var rankLabel = forge.bitmapText(ScoresSprites.RANK_LABEL, '50%', '75%', 'Modeka');
+							rankLabel.setText("Ranked at: " + (rank + 1) + this.nth(rank + 1));
+
+					new FadeTransition({
+						game: this.game,
+						duration: 1000,
+						enterSlideY: 50,
+						items: [rankLabel]
+					}).enter();
+
+		}).catch(() => {
+			console.warn("Failed to fetch rank");
+		});
 
 		//Nav buttons
 		var exitBtn = new StateNavButton(this.game, 'Menu', '<< Menu', 'left', 500);
 		var leaderboardBtn = new StateNavButton(this.game, 'Leaderboard', 'Leaderboard >>', 'right', 500);
 	
 	}
+
+	//NOT WRITTEN BY ME
+	//CREDIT TO: https://stackoverflow.com/questions/15397372/javascript-new-date-ordinal-st-nd-rd-th
+	nth(d) {
+		if(d>3 && d<21) return 'th'; // thanks kennebec
+		switch (d % 10) {
+			case 1:  return "st";
+			case 2:  return "nd"; 
+			case 3:  return "rd";
+			default: return "th";
+		}
+	} 
 
 }
 
