@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var APP_DIR = path.resolve(__dirname, 'app');
-var BUILD_DIR = path.resolve(__dirname, 'build');
+var BUILD_DIR = path.resolve(__dirname, '..', 'hadron-cordova', 'www');
 
 var config = {
 	devtool: "cheap-module-source-map",
@@ -11,7 +11,6 @@ var config = {
 			devtoolLineToLine: true,
 			pathinfo: true,
 			path: BUILD_DIR,
-			sourceMapFilename: "bundle.js.map",
 			filename: 'bundle.js'
 	},
 	module : {
@@ -23,7 +22,6 @@ var config = {
 	},
 	resolve: {
 		alias: {
-
 			//Main objects directory
 			objects: path.resolve(__dirname, 'app/objects'),
 			
@@ -39,7 +37,6 @@ var config = {
 			menu: path.resolve(__dirname, 'app/objects/menu'),
 			main: path.resolve(__dirname, 'app/objects/main'),
 			results: path.resolve(__dirname, 'app/objects/results')
-		
 		}
 	}
 };

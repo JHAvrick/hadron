@@ -4,7 +4,7 @@ import Wave from 'fx/wave.js';
 
 class ShapeColorIndicator extends Phaser.Sprite {
 	constructor(game){
-		super(game, game.width * .11, game.height / 2, 'sprites');
+		super(game, game.width * .09, game.height / 2, 'sprites');
 		this.game = game;
 		this.forge = this.game.plugins.forge;
 		this.anchor.setTo(.5, .5);
@@ -16,8 +16,8 @@ class ShapeColorIndicator extends Phaser.Sprite {
 		this.forge.animation(Animations.COLOR_BLOB, this);
 
 		//Text hint sprites
-		this._colorText = this.forge.bitmapText(IndicatorSprites.COLOR_TEXT, '11%', '43%', 'Modeka');
-		this._shapeText = this.forge.bitmapText(IndicatorSprites.SHAPE_TEXT, '11%', '57%', 'Modeka');
+		this._colorText = this.forge.bitmapText(IndicatorSprites.COLOR_TEXT, '09%', '43%', 'Modeka');
+		this._shapeText = this.forge.bitmapText(IndicatorSprites.SHAPE_TEXT, '09%', '57%', 'Modeka');
 		
 		this._anyColor = false;
 		this._anyShape = false;
@@ -122,10 +122,10 @@ class IndicatorTransition extends Phaser.Group {
 		super(game);
 		this.game = game;
 
-		var hex = this.game.add.sprite(game.width / 9, game.height / 2, 'sprites', 'hexShape');
-		var tri = this.game.add.sprite(game.width / 9, game.height / 2, 'sprites', 'triShape');
-		var cube = this.game.add.sprite(game.width / 9, game.height / 2, 'sprites', 'cubeShape');
-		var orb = this.game.add.sprite(game.width / 9, game.height / 2, 'sprites', 'orbShape');
+		var hex = this.game.add.sprite(game.width * .09, game.height / 2, 'sprites', 'hexShape');
+		var tri = this.game.add.sprite(game.width * .09, game.height / 2, 'sprites', 'triShape');
+		var cube = this.game.add.sprite(game.width * .09, game.height / 2, 'sprites', 'cubeShape');
+		var orb = this.game.add.sprite(game.width * .09, game.height / 2, 'sprites', 'orbShape');
 
 		hex.update = function(){ this.angle += 10; }.bind(hex);
 		tri.update = function(){ this.angle -= 10; }.bind(tri);
