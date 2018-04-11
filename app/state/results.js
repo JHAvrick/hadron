@@ -10,7 +10,7 @@ import ScoreRequest from 'results/score-request.js';
 class Results extends Phaser.State {
 
 	create(){
-		this.game.camera.flash(0xff0000, 1000);
+		this.game.camera.flash(0x660000, 1000);
 
 		//convenience accessors for plugins
 		var layout = this.game.plugins.layout;

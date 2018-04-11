@@ -16,8 +16,11 @@ class PauseMenu extends OverlayMenu {
 		this.onResume = onResume;
 
 		//The hamburger icon, NOT a part of the overlay menu
-		this.hamburger = forge.sprite(PauseSprites.HAMBURGER, layout.fromEndX(10), 15, 'sprites', 'barIcon');
+		this.hamburger = forge.sprite(PauseSprites.HAMBURGER, layout.fromEndX(3), 5, 'sprites', 'barIcon');
 		this.hamburger.events.onInputDown.add(this.handlePause.bind(this));
+
+		//Cordova pause event
+		document.addEventListener("pause", this.handlePause.bind(this));
 
 		this.waveCount = forge.bitmapText(PauseSprites.LABEL_TEXT, '50%', '25%', 'Modeka');
 		this.waveCount.setText("Wave: 1");

@@ -23,12 +23,17 @@ var config = {
 	},
 	resolve: {
 		alias: {
+
+			//Main objects directory
 			objects: path.resolve(__dirname, 'app/objects'),
 			
+			//Base class directories 
 			display: path.resolve(__dirname, 'app/objects/base/display'),
 			fx: path.resolve(__dirname, 'app/objects/base/fx'),
+			math: path.resolve(__dirname, 'app/objects/base/math'),
 			util: path.resolve(__dirname, 'app/objects/base/util'),
 			
+			//Game source directories
 			config: path.resolve(__dirname, 'app/objects/config'),
 			state: path.resolve(__dirname, 'app/state'),
 			menu: path.resolve(__dirname, 'app/objects/menu'),

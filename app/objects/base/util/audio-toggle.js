@@ -3,6 +3,7 @@ class AudioToggle extends Phaser.Sprite {
 		super(game, 25, 25, atlas);
 		this.game = game;
 		this.settings = this.game.plugins.settings;
+		this.audio = this.game.plugins.audio;
 		
 		this._muted = this.settings.get('muted');
 		this.frameOn = frameOn;
@@ -23,7 +24,7 @@ class AudioToggle extends Phaser.Sprite {
 	get isMuted(){ return this._muted; }
 
 	mute(suppressEvent){
-		this.game.sound.mute = true;
+		this.audio.mute = true;
 		this.settings.set('muted', true);
 
 		this._muted = true;
@@ -34,7 +35,7 @@ class AudioToggle extends Phaser.Sprite {
 	}
 
 	unmute(suppressEvent){
-		this.game.sound.mute = false;
+		this.audio.mute = false;
 		this.settings.set('muted', false);
 
 		this._muted = false;

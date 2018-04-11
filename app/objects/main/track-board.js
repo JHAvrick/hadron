@@ -7,11 +7,12 @@ class TrackBoard {
 		this.forge = this.game.plugins.forge;
 
 		//Get the center x and y
-		this.CX = (-1 * ((2500 / 2) - this.game.width)) - (window.extraWidth / 2);
+		const extraWidth = (this.game.width - 720) / 2;
+
+		//The track is placed somewhat arbitrarily, but is adjusted depending on how wide the game is
+		this.CX = (-1 * ((2500 / 2) - this.game.width)) - extraWidth;
 		this.CY = this.game.world.centerY;
 
-		console.log((window.extraWidth / 2));
-		
 		//generate the board sprites
 		this.trackSprite = this.forge.sprite(TrackSprites.MAIN, this.CX, this.CY, 'tracks', 'tracks');
 		this.tracks = this._generateTracks();
@@ -31,22 +32,8 @@ class TrackBoard {
 	}
 
 	reveal(onComplete){
-
-		var revealFlashSprites = new FadeTransition({
-			game: this.game, 
-			sequence: true,
-			duration: 150,
-			items: this.flashSprites
-		}).enter(() => {
-
-			this.trackSprite.alpha = 1;
-			revealFlashSprites.exit(() => {
-
-				onComplete();
-
-			});
-
-		});
+		this.trackSprite.alpha = 1;
+		onComplete();
 	}
 
 	_generateFlashSprites(){

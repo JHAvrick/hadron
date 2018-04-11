@@ -17,13 +17,12 @@ import InputAlias from 'state/input-alias';
 const container = document.getElementById("game-container").getBoundingClientRect();
 const windowAspectRatio = container.height / container.width;
 const aspectRatio = windowAspectRatio < 1.5 ? 1.5 : windowAspectRatio;
-const height = 1280;
-const width = height / aspectRatio;
-window.extraWidth = width > 720 ? width - 720 : 0;
 
+const gameHeight = 1280;
+const gameWidth = gameHeight / windowAspectRatio;
 var game = new Phaser.Game({
-    width: width,
-    height: height,
+    width: gameWidth,
+    height: gameHeight,
     renderer: Phaser.WEBGL,
     parent: 'game-container',
     transparent: false,

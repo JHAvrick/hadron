@@ -14,8 +14,8 @@ const PauseSprites = {
 	HAMBURGER: {
 		"anchor.x" : 1,
 		"anchor.y" : 0,
-		"scale.x" : 1.5,
-		"scale.y" : 1.5,
+		"scale.x" : .75,
+		"scale.y" : .75,
 		"inputEnabled" : true
 	}
 }

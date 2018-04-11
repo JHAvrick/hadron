@@ -1,6 +1,6 @@
 class ScoreRequest {
 	constructor(){
-		this._route = 'http://192.168.1.2:8000';
+		this._route = 'http://192.168.1.4:8008';
 	}
 
 	sendScore(guid, alias, score){
@@ -18,7 +18,10 @@ class ScoreRequest {
 
 			fetch(request).then((response) => {
 				resolve();
-			}).catch(() => {
+			}).catch((err) => {
+
+				console.warn(err);
+
 				reject();
 			});		
 
@@ -44,7 +47,9 @@ class ScoreRequest {
 
 				});
 
-			}).catch(() => {
+			}).catch((err) => {
+
+				console.warn(err);
 
 				reject();
 
@@ -54,6 +59,9 @@ class ScoreRequest {
 	}
 
 	fetchTop(){
+
+		console.log("Fetching Top Scores...");
+
 		return new Promise((resolve, reject) => {
 			var request = new Request(this._route + '/fetch_top', 
 									{
@@ -70,6 +78,8 @@ class ScoreRequest {
 				});
 
 			}).catch((err) => {
+
+				console.warn(err);
 
 				reject();
 

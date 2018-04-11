@@ -3,8 +3,8 @@ class OverlayMenu {
 		this.game = game;
 
 		this._bg = this.game.add.sprite(0, 0, bgImage, frameName);
-		this._bg.width = this.game.width + 10;
-		this._bg.height = this.game.height + 10;
+		this._bg.width = this.game.width + 25;
+		this._bg.height = this.game.height + 25;
 		this._bg.exists = false;
 
 		//The opacity of the menu

@@ -29,16 +29,16 @@ class WaveRater {
 
 	rateWave(){
 		//PERFECT - No orbs or recharges missed, no wrong orbs collected
-		if (this._rechargesMissed == 0 && this._rechargesCollected > 0 && this._orbsMissed == 0 && this._wrongOrbs == 0){
+		if (this._rechargesMissed == 0 && this._orbsMissed == 0 && this._wrongOrbs == 0){
 			this._onRating('perfect');
 
 		//GOOD - No orbs missed, but missed recharges
-		} else if (this._orbsMissed == 0 && this._wrongOrbs == 0) {
+		} else if (this._orbsMissed == 0 && this._wrongOrbs < 2) {
 			this._onRating('good');
 
 
 		//ACCEPTABLE - Missed an orb, or collected the wrong type, but not both
-		} else if (this._orbsMissed == 0 && this._wrongOrbs > 0 || this._wrongOrbs == 0 && this._orbsMissed > 0) {
+		} else if (this._orbsMissed == 0 && this._wrongOrbs > 1 || this._wrongOrbs == 0 && this._orbsMissed > 0) {
 			this._onRating('acceptable');
 
 		//POOR - Missed an orb AND collected the wrong type

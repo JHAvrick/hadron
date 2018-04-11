@@ -2,7 +2,7 @@ import Animations from 'config/animations.js';
 
 class Player extends Phaser.Sprite {
 	constructor(game, board){
-		super(game, board.CX + board.getRadius(0), game.height / 2, 'sprites');
+		super(game, board.CX + board.getRadius(2), game.height / 2, 'sprites');
 			this.game = game;
 			this.anchor.setTo(.5, .5);
 			this.alpha = 0;
@@ -10,7 +10,7 @@ class Player extends Phaser.Sprite {
 			this.tracks = board.tracks;
 			this.cx = board.CX;
 			this.cy = board.CY;
-			this.track = 0; //index of track
+			this.track = 2; //index of track
 
 			this.game.plugins.forge.animation(Animations.PLAYER, this).play();
 

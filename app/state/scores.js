@@ -31,9 +31,11 @@ class Scores extends Phaser.State {
 		var scoreRequest = new ScoreRequest();
 				scoreRequest.fetchRank(stats.getBest('score')).then((rank) => {
 					if (this.game.state.current != "Scores") return;
-
+				
 					var rankLabel = forge.bitmapText(ScoresSprites.RANK_LABEL, '50%', '75%', 'Modeka');
-							rankLabel.setText("Ranked at: " + (rank + 1) + this.nth(rank + 1));
+					let actualRank = rank === 0 ? 1 : rank;
+
+					rankLabel.setText("Ranked at: " + (actualRank) + this.nth(actualRank));
 
 					new FadeTransition({
 						game: this.game,

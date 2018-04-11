@@ -4,6 +4,7 @@ import RGBSplitFilter from 'fx/rgb-split-filter.js';
 import ParticleDrift from 'fx/particle-drift.js';
 import Animations from 'config/animations.js';
 import StateNavButton from 'menu/state-nav-button.js';
+import FerrisWheel from 'display/ferris-wheel.js';
 
 //This page shows the controls
 class TutorialTwo extends Phaser.State {
@@ -32,16 +33,13 @@ class TutorialTwo extends Phaser.State {
 		let colorLabel = forge.bitmapText(TutorialSprites.COLOR_LABEL, '60%', '55%', 'Modeka');
 		let rechargeLabel = forge.bitmapText(TutorialSprites.RECHARGE_LABEL, '60%', '70%', 'Modeka');
 		
-
 		let hex = forge.sprite(TutorialSprites.HEX, '50%', '45%', 'sprites', 'hexShape');
-		//let tri = forge.sprite(TutorialSprites.TRI, '40%', '45%', 'sprites', 'triShape');
-		//let orb = forge.sprite(TutorialSprites.ORB, '60%', '45%', 'sprites', 'orbShape');
-		//let cube = forge.sprite(TutorialSprites.CUBE, '80%', '45%', 'sprites', 'cubeShape');
+		let tri = forge.sprite(TutorialSprites.TRI, '40%', '45%', 'sprites', 'triShape');
+		let orb = forge.sprite(TutorialSprites.ORB, '60%', '45%', 'sprites', 'orbShape');
+		let cube = forge.sprite(TutorialSprites.CUBE, '80%', '45%', 'sprites', 'cubeShape');
 
-		//let flashHex = forge.sprite(TutorialSprites.FLASH, '80%', '70%', 'sprites', 'hexShape');
-		let flashTri = forge.sprite(TutorialSprites.FLASH, '50%', '70%', 'sprites', 'triShape');
-		//let flashOrb = forge.sprite(TutorialSprites.FLASH, '40%', '70%', 'sprites', 'orbShape');
-		//let flashCube = forge.sprite(TutorialSprites.FLASH, '20%', '70%', 'sprites', 'cubeShape');
+		var wheel = new FerrisWheel(this.game, layout.ratioX(50), layout.ratioY(60), 150, .010);
+				wheel.addAll([hex, tri, orb, cube]);
 
 		this.header = new FadeTransition({ game: this.game, duration: 1000,
 			enterSlideX: layout.ratioX(75),
@@ -57,41 +55,39 @@ class TutorialTwo extends Phaser.State {
 			items: [goalTwo]
 		});
 
-		this.specificColors = new FadeTransition({
-			game: this.game, 
-			duration: 1000,
-			enterSlideX: layout.ratioX(75),
-			exitSlideX: -layout.ratioX(75),
-			items: [hex]
-		});
-
-		this.goalThree = new FadeTransition({
-			game: this.game, 
-			duration: 1000,
-			enterSlideX: -layout.ratioX(75),
-			exitSlideX: layout.ratioX(75),
-			items: [goalThree]
-		});
-
-		this.anyColors = new FadeTransition({
-			game: this.game, 
-			duration: 1000,
-			enterSlideX: layout.ratioX(75),
-			exitSlideX: -layout.ratioX(75),
-			items: [flashTri]
-		});
-
-		FadeTransition.chainEnter([this.header, this.goalTwo, this.specificColors, this.goalThree, this.anyColors]);
+		FadeTransition.chainEnter([this.header, this.goalTwo /*, this.specificColors, this.goalThree, this.anyColors */]);
 
 		const returnState = this.game.device.desktop ? 'TutorialOneDesktop' : 'TutorialOne';
 		let backBtn = new StateNavButton(this.game, returnState, '<< Back', 'left', 500);
 		let nextBtn = new StateNavButton(this.game, 'TutorialThree', 'Next >>', 'right', 500);
-				//nextBtn.events.onInputDown.add(this.pageTwo.exit, this.pageTwo);
 
+	}
+
+}
+
+class OrbExamplesDisplay extends Phaser.Sprite {
+	constructor(game, cx, cy, radians, radius){
+		super(game, )
+		this.game = game;
+		this.anchor.setTo(.5, .5);
+
+		this.CX = cx;
+		this.CY = cy;
+
+
+
+	}
+
+	update(){
+		this.x = this.CX + (Math.sin(this.radians) * this.radius); //Update position
+		this.y = this.CY + (Math.cos(this.radians) * this.radius);
+		this.radians += this.speed; //Update speed	
 	}
 
 
 
 }
 
+
 export default TutorialTwo;
+

@@ -10,8 +10,8 @@
 6 silly lifecycle phaser-webpack-boilerplate@1.0.0~predev: no script for predev, continuing
 7 info lifecycle phaser-webpack-boilerplate@1.0.0~dev: phaser-webpack-boilerplate@1.0.0
 8 verbose lifecycle phaser-webpack-boilerplate@1.0.0~dev: unsafe-perm in lifecycle true
-9 verbose lifecycle phaser-webpack-boilerplate@1.0.0~dev: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Cloud Strife\Desktop\hadron\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\Crucial\Crucial Storage Executive;C:\Program Files (x86)\Calibre2\;C:\Android\sdk\tools;C:\Android\sdk\platform-tools;C:\Android\sdk;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Users\Cloud Strife\AppData\Local\Microsoft\WindowsApps;C:\Users\Cloud Strife\AppData\Roaming\npm;C:\Users\Cloud Strife\AppData\Local\atom\bin;C:\Android\sdk\platform-tools;C:\Android\sdk\tools;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin
-10 verbose lifecycle phaser-webpack-boilerplate@1.0.0~dev: CWD: C:\Users\Cloud Strife\Desktop\hadron
+9 verbose lifecycle phaser-webpack-boilerplate@1.0.0~dev: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Cloud Strife\Desktop\Dev\Projects\Hadron\hadron\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\Crucial\Crucial Storage Executive;C:\Program Files (x86)\Calibre2\;C:\Android\sdk\tools;C:\Android\sdk\platform-tools;C:\Android\sdk;C:\Program Files\MySQL\MySQL Utilities 1.6\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Users\Cloud Strife\AppData\Local\Microsoft\WindowsApps;C:\Users\Cloud Strife\AppData\Roaming\npm;C:\Users\Cloud Strife\AppData\Local\atom\bin;C:\Android\sdk\platform-tools;C:\Android\sdk\tools;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Heroku\bin;C:\Users\Cloud Strife\AppData\Local\Microsoft\WindowsApps;
+10 verbose lifecycle phaser-webpack-boilerplate@1.0.0~dev: CWD: C:\Users\Cloud Strife\Desktop\Dev\Projects\Hadron\hadron
 11 silly lifecycle phaser-webpack-boilerplate@1.0.0~dev: Args: [ '/d /s /c', 'webpack -d --watch' ]
 12 silly lifecycle phaser-webpack-boilerplate@1.0.0~dev: Returned: code: 3221225786  signal: null
 13 info lifecycle phaser-webpack-boilerplate@1.0.0~dev: Failed to exec dev script
@@ -26,8 +26,8 @@
 14 verbose stack     at maybeClose (internal/child_process.js:886:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid phaser-webpack-boilerplate@1.0.0
-16 verbose cwd C:\Users\Cloud Strife\Desktop\hadron
-17 error Windows_NT 10.0.14393
+16 verbose cwd C:\Users\Cloud Strife\Desktop\Dev\Projects\Hadron\hadron
+17 error Windows_NT 10.0.16299
 18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "run" "dev"
 19 error node v6.10.2
 20 error npm  v3.10.10

@@ -1,20 +1,76 @@
+import AudioGroup from './audio-group.js';
+
 class AudioManager extends Phaser.Plugin {
-	constructor(game, showToggle){
+	constructor(game){
 		super(game);
 		this.game = game;
-
-		this._blurMute = false;
-		this._globalMute = false;
 
 		this._instances = {};
 		this._groups = {};
 	}
 
-	addAudioGroup(groupKey, audioKeys){ this._groups[groupKey] = new AudioGroup(this.game, audioKeys); }
-	previous(groupKey){ this._groups[groupKey].previous(); }
-	next(groupKey){ this._groups[groupKey].next(); }
-	random(groupKey){ this._groups[groupKey].random(); }
+	/*
+	 * Load music. No difference to loadFX(). The function is seperate for the sake
+	 * of consistency w/ AndroidAudioManager which requires the distiction for 
+	 * loading purposes.
+	 */ 
+	loadMusic(manifest){
+		for (let key in manifest){
+			this.game.load.audio(key, manifest[key]);
+		}
+	}
 
+	/*
+	 * Load fx. No difference to loadMusic().
+	 */ 
+	loadFX(manifest){
+		for (let key in manifest){
+			this.game.load.audio(key, manifest[key]);
+		}
+	}
+
+	/*
+	 * Inform the callback when a particular audio file is decoded.
+	 */ 
+	onDecoded(key, callback){
+		this.game.sound.setDecodedCallback(key, callback);
+	}
+
+	/*
+	 * Add as new audio group consisting of the given keys. Audio groups allow
+	 * for audio to be played in sequence of randomly from the pool.
+	 */ 
+	addAudioGroup(groupKey, audioKeys){
+		this._groups[groupKey] = new AudioGroup(this.game, audioKeys); 
+	}
+
+	/*
+	 * Play the previous audio file in an already-existing audio-group. Wrapper 
+	 * for AudioGroup's method of the same name.
+	 */ 
+	previous(groupKey){
+		this._groups[groupKey].previous(); 
+	}
+
+	/*
+	 * Play the next audio file in an already-existing audio-group. Wrapper for 
+	 * AudioGroup's method of the same name.
+	 */ 
+	next(groupKey){
+		this._groups[groupKey].next(); 
+	}
+
+	/*
+	 * Play a random audio file in an already-existing audio-group. Wrapper for 
+	 * AudioGroup's method of the same name.
+	 */ 
+	random(groupKey){
+		this._groups[groupKey].random(); 
+	}
+
+	/*
+	 * Play a music audio file. Music audio is looped by default.
+	 */ 
 	music(key, volume = 1){
 		if (this._instances[key] && this._instances[key].isPlaying) return;
 
@@ -27,6 +83,9 @@ class AudioManager extends Phaser.Plugin {
 		this._instances[key].loopFull();
 	}
 
+	/*
+	 * Play an audio file. Looping opional.
+	 */ 
 	play(key, loop = false, volume = 1){
 		//Create the sound if it doesn't exist
 		if (!this._instances[key]){
@@ -42,6 +101,9 @@ class AudioManager extends Phaser.Plugin {
 		else this._instances[key].play();
 	}
 
+	/*
+	 * Fade out audio over duration,
+	 */ 
 	fadeOut(key, duration = 1000){
 		this._instances[key].fadeOut(duration);
 		this._instances[key].onFadeComplete.add(() => {
@@ -50,51 +112,29 @@ class AudioManager extends Phaser.Plugin {
 		});
 	}
 
+	/*
+	 * Fade in audio over duration,
+	 */ 
 	fadeIn(key, duration = 1000, loop = false){
 		if (this._instances[key] && this._instances[key].isPlaying) return;
 
 		this._instances[key].fadeIn(duration, loop);
 	}
 
-}
-
-
-class AudioGroup {
-	constructor(game, keys){
-		this.game = game;
-
-		this._keys = keys;
-		this._audio = [];
-		this._index = 0;
-
-		//Generate audio files
-		keys.forEach((key) => {
-			this._audio.push(game.add.audio(key));
-		});
-
+	/*
+	 * Wrapper/Accessor for setting Phaser mute
+	 */ 
+	set mute(value){ 
+		this.game.sound.mute = value;
 	}
 
-	//NOT TESTED
-	random(){
-		Phaser.ArrayUtils.getRandomItem(this._audio).play();
+	/*
+	 * Wrapper/Accessor for Phaser global mute.
+	 */ 
+	get mute(){
+		return this.game.sound.mute
 	}
 
-	//NOT TESTED
-	previous(){
-		this._audio[this._index].play();
-		
-		this._index -= 1;
-		if (this._index === 0)
-			this._index =  this._audio.length - 1;
-	}
-
-	next(){
-		this._audio[this._index].play();
-		
-		this._index += 1;
-		if (this._index === this._audio.length - 1)
-			this._index = 0;
-	}
 }
 
 export default AudioManager;

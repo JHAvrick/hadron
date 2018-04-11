@@ -95,7 +95,7 @@ class Particle extends Phaser.Sprite {
 	//I beleive there is an issue with sprite bounds not updating when the 'exists' flag
 	//is set to false, which causes fake collisions to be triggered. Since there is a simple 
 	//and not-too-hackish work-around (just destroy the sprite and make a new one for the pool),
-	//I do not feel the need to resolve the exists/bounds issue.
+	//I'm just going to leave it as is.
 	die(){
 		this.onDead.dispatch(this);
 		this.destroy();

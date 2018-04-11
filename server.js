@@ -6,6 +6,6 @@ var path = require('path');
 app.use(express.static(__dirname + "/build"));
 app.use(express.static(path.join(__dirname + "/build", '/FOLDERTOHTMLFILESTOSERVER')));
 
-app.listen(8080, "0.0.0.0");
+app.listen(8000, "0.0.0.0");
 
-console.log('Listening on port 8080');
+console.log('Listening on port 8000');

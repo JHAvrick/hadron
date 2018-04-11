@@ -32,14 +32,16 @@ const TutorialSprites = {
 		"alpha" : 0,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
-		"angle" : -90
+		"angle" : -90,
+		"tint" : 0x00ff00
 	},
 
 	KEY_RIGHT: {
 		"alpha" : 0,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
-		"angle" : 90
+		"angle" : 90,
+		"tint" : 0x00ff00
 	},
 
 	GOAL: {
@@ -48,7 +50,7 @@ const TutorialSprites = {
 		"anchor.y" : .5,
 		"fontSize" : 56,
 		"align": 'center',
-		"text" : "Collect orbs of the correct \n shape and color."
+		"text" : "Collect particles of the correct \n shape and/or color."
 	},
 
 	GOAL_TWO: {
@@ -57,7 +59,7 @@ const TutorialSprites = {
 		"anchor.y" : .5,
 		"fontSize" : 56,
 		"align": 'center',
-		"text" : "Sometimes a specific color . . ."
+		"text" : "The indicator will guide you."
 	},
 
 	GOAL_THREE: {
@@ -143,7 +145,7 @@ const TutorialSprites = {
 	},
 
 	HEX: {
-		"alpha" : 0,
+		"alpha" : 1,
 		"tint" : 0xaa00ff,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
@@ -155,7 +157,7 @@ const TutorialSprites = {
 	},
 
 	TRI: {
-		"alpha" : 0,
+		"alpha" : 1,
 		"tint" : 0x00ffd2,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
@@ -167,7 +169,7 @@ const TutorialSprites = {
 	},
 
 	ORB:{
-		"alpha" : 0,
+		"alpha" : 1,
 		"tint" : 0x00aaff,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
@@ -179,7 +181,7 @@ const TutorialSprites = {
 	},
 
 	CUBE:{
-		"alpha" : 0,
+		"alpha" : 1,
 		"tint" : 0xff00aa,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
@@ -191,7 +193,7 @@ const TutorialSprites = {
 	},
 
 	FLASH: {
-		"alpha" : 0,
+		"alpha" : 1,
 		"anchor.x" : .5,
 		"anchor.y" : .5,
 		"scale.x" : 1.5,

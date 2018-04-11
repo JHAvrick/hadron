@@ -1,32 +1,76 @@
+import Animations from 'config/animations.js';
+import IndicatorSprites from 'config/indicator-sprites.js';
 import Wave from 'fx/wave.js';
 
 class ShapeColorIndicator extends Phaser.Sprite {
 	constructor(game){
-		super(game, game.width * .1, game.height / 2, 'sprites');
+		super(game, game.width * .11, game.height / 2, 'sprites');
 		this.game = game;
+		this.forge = this.game.plugins.forge;
 		this.anchor.setTo(.5, .5);
 		this.alpha = 0;
-
-		//var extraScale = (720 + window.extraWidth)
 
 		this._revealFX = new IndicatorTransition(this.game);
 		this._waveFX = new Wave(this.game, this.x, this.y, 'sprites', 'orb_00');
 
+		this.forge.animation(Animations.COLOR_BLOB, this);
+
+		//Text hint sprites
+		this._colorText = this.forge.bitmapText(IndicatorSprites.COLOR_TEXT, '11%', '43%', 'Modeka');
+		this._shapeText = this.forge.bitmapText(IndicatorSprites.SHAPE_TEXT, '11%', '57%', 'Modeka');
+		
 		this._anyColor = false;
+		this._anyShape = false;
 		this.game.add.existing(this);
+	}
+
+	_setFrame(shape, color, colorName){
+
+		if (color && !shape){
+			this.animations.play('glow');
+			this.tint = color;
+
+			this._anyShape = true;
+			this._anyColor = false;
+
+			this._colorText.text = colorName;
+			this._shapeText.text = "";
+
+
+		} else if (!color && shape){
+			this.frameName = shape + "Shape"; 
+
+			this._anyColor = true;
+			this._anyShape = false;
+
+			this._colorText.text = "";
+			this._shapeText.text = shape;
+
+		} else {
+
+			this.frameName = shape + "Shape"; 
+			this.tint = color;
+
+			this._colorText.text = colorName;
+			this._shapeText.text = shape;
+
+		}
+
 	}
 
 	reveal(){
 		this._revealFX.reveal(3);
 	}
 
-	enter(shape, color, onComplete = function(){}){
+	enter(shape, color, colorName, onComplete = function(){}){
+		
+		this._setFrame(shape, color, colorName);
 		//set frame
-		this.frameName = shape + "Shape";
+		//this.frameName = shape + "Shape";
 
-		//Set color
-		if (!color) this._anyColor = true;
-		else this.tint = color;
+		//anyColor flag 
+		//if (!color) this._anyColor = true;
+		//else this.tint = color;
 
 		//Transition in
 		this._revealFX.start(() => {
@@ -51,6 +95,7 @@ class ShapeColorIndicator extends Phaser.Sprite {
 	exit(onComplete = function(){}){
 		this.alpha = 0;
 		this._anyColor = false;
+		this.animations.stop();
 
 		/*
 		this.game.add.tween(this).to({ alpha: 0 }, 500, Phaser.Easing.Quadratic.Out, true)
@@ -63,7 +108,8 @@ class ShapeColorIndicator extends Phaser.Sprite {
 	}
 
 	update(){
-		this.angle -= 1;
+
+		this.angle += 1;
 
 		if (this._anyColor)
 			this.tint = Phaser.Color.getRandomColor();

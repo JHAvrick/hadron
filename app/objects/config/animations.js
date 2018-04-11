@@ -4,7 +4,6 @@ const orbFrames = Phaser.Animation.generateFrameNames('orb_', 0, 12, '', 2);
 const cubeFrames = Phaser.Animation.generateFrameNames('cube_', 0, 12, '', 2);
 const triFrames = Phaser.Animation.generateFrameNames('tri_', 0, 12, '', 2);
 
-
 //const containerFrames = Phaser.Animation.generateFrameNames('container_', 0, 12, '', 2);
 //const glitchFrames = Phaser.Animation.generateFrameNames('void_', 0, 12, '', 2);
 

@@ -10,10 +10,7 @@ class LifeIndicator {
 		this._bar.scale.x = .5;
 		this._bar.scale.y = 0;
 		this._bar.anchor.setTo(.5, 1);
-
-		//this._text = this.game.add.bitmapText(this.layout.ratioX(98), this.layout.ratioY(99), 'Modeka', '0000010', 50);
-		//this._text.anchor.setTo(1, 1);
-
+		
 	}
 
 	//Resizes the meter scale to match the current life count
