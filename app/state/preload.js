@@ -44,14 +44,12 @@ class Preload extends Phaser.State {
 		
 		//Load stuff
 		this.game.load.bitmapFont('Modeka', 'assets/font/modeka.png', 'assets/font/modeka.xml');
-		this.game.load.image('fractalNoise', 'assets/sprites/fractal-noise.png');
 		this.game.load.atlas('menu', 'assets/sprites/menu.png', 'assets/sprites/menu.json');
 		this.game.load.atlas('gradients', 'assets/sprites/gradients.png', 'assets/sprites/gradients.json');
 		this.game.load.atlas('sprites', 'assets/sprites/sprites.png', 'assets/sprites/sprites.json');
 		this.game.load.atlas('misc', 'assets/sprites/misc.png', 'assets/sprites/misc.json');
 		this.game.load.atlas('tracks', 'assets/sprites/tracks.png', 'assets/sprites/tracks.json');
 		this.game.load.atlas('results', 'assets/sprites/results.png', 'assets/sprites/results.json');
-		this.game.load.json('mechanics', 'assets/mechanics.json');
 
 		/*
 		 * Audio asset loading is handled by the AudioManager plugin to accomodate

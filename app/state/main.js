@@ -24,6 +24,7 @@ import CollectBurst from 'main/collect-burst.js';
 import PointIndicator from 'display/point-indicator.js';
 import BitmapTextCounter from 'display/bitmaptext-counter.js';
 import BackgroundFader from 'display/background-fader.js';
+import TapEffect from 'main/tap-effect.js';
 
 //Display Objects
 import ShapeColorIndicator from 'main/shape-color-indicator.js';
@@ -49,6 +50,7 @@ class Main extends Phaser.State {
 	create(){
 		//Fade in
 		this.game.camera.flash(0x000000, 2500);
+	
 
 		/*
 			------------------------------AUDIO --------------------------------------
@@ -109,6 +111,9 @@ class Main extends Phaser.State {
 			--------------------------- Display Objects ------------------------------
 		*/
 		
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
+
 		//Pause overlay
 		this.pauseMenu = new PauseMenu(this.game, this.handlePause.bind(this), this.handleResume.bind(this));
 		this.pauseMenu.bgAlpha = .8;
@@ -348,6 +353,7 @@ class Main extends Phaser.State {
 	}
 
 	handlePause(){
+		//this.game.paused = true;
 		this.gameIsPaused = true;
 		this.player.isPaused = true;
 		this.pool.pause();
@@ -355,6 +361,7 @@ class Main extends Phaser.State {
 	}
 
 	handleResume(){
+		//this.game.paused = false;
 		this.gameIsPaused = false;
 		this.player.isPaused = false;
 		this.pool.resume();

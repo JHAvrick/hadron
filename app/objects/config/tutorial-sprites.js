@@ -12,7 +12,7 @@ const TutorialSprites = {
 		"anchor.x" : .5,
 		"anchor.y" : .5,
 		"fontSize" : 76,
-		"text" : "Use the arrow keys to move."
+		"text" : "Use the left and right \n arrow keys to move."
 	},
 
 	KEY_UP: {
@@ -50,7 +50,7 @@ const TutorialSprites = {
 		"anchor.y" : .5,
 		"fontSize" : 56,
 		"align": 'center',
-		"text" : "Collect particles of the correct \n shape and/or color."
+		"text" : "Collide with particles of the correct \n shape and/or color."
 	},
 
 	GOAL_TWO: {

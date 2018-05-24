@@ -32,11 +32,11 @@ class Particle extends Phaser.Sprite {
 
 			//Animations
 			var forge = game.plugins.forge;
-					forge.animation(Animations.ORB_GLOW, this);
-					forge.animation(Animations.HEX_GLOW, this);
-					forge.animation(Animations.CUBE_GLOW, this);
-					forge.animation(Animations.TRI_GLOW, this);
-					forge.animation(Animations.SPECIAL_GLOW, this);
+				forge.animation(Animations.ORB_GLOW, this);
+				forge.animation(Animations.HEX_GLOW, this);
+				forge.animation(Animations.CUBE_GLOW, this);
+				forge.animation(Animations.TRI_GLOW, this);
+				forge.animation(Animations.SPECIAL_GLOW, this);
 
 			this.update = this.updatePosition;
 			this.game.add.existing(this);

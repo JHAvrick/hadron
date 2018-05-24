@@ -4,7 +4,7 @@ import StatsDisplay from 'results/stats-display.js';
 import FadeTransition from 'fx/fade-transition.js';
 import ResultsSprites from 'config/results-sprites.js';
 import StateNavButton from 'menu/state-nav-button.js';
-
+import TapEffect from 'main/tap-effect.js';
 import ScoreRequest from 'results/score-request.js';
 
 class Results extends Phaser.State {
@@ -18,6 +18,8 @@ class Results extends Phaser.State {
 		var settings = this.game.plugins.settings;
 		var stats = this.game.plugins.stats;
 
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//FX
 		var rgb = new RGBSplitFilter();

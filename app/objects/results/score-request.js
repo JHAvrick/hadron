@@ -1,6 +1,6 @@
 class ScoreRequest {
 	constructor(){
-		this._route = 'http://192.168.1.4:8008';
+		this._route = 'https://playhadron.herokuapp.com';
 	}
 
 	sendScore(guid, alias, score){

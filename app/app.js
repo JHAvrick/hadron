@@ -27,7 +27,7 @@ var game = new Phaser.Game({
     parent: 'game-container',
     transparent: false,
     antialias: true,
-    scaleMode: Phaser.ScaleManager.SHOW_ALL
+    scaleMode: Phaser.ScaleManager.RESIZE
 });
 
 function onBoot() {

@@ -3,6 +3,7 @@ import FadeTransition from 'fx/fade-transition.js';
 import RGBSplitFilter from 'fx/rgb-split-filter.js';
 import ParticleDrift from 'fx/particle-drift.js';
 import StateNavButton from 'menu/state-nav-button.js';
+import TapEffect from 'main/tap-effect.js';
 
 //This page shows the controls
 class TutorialOne extends Phaser.State {
@@ -17,6 +18,9 @@ class TutorialOne extends Phaser.State {
 		//-------------------FX / AMBIENCE--------------------------------------------------------------------------------------------
 		this.game.stage.filters = null;
 		new ParticleDrift(this.game, [new RGBSplitFilter()]);
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//Page one items
 		let controls = forge.bitmapText(TutorialSprites.CONTROLS, layout.ratioX(50), layout.ratioY(20), 'Modeka');

@@ -4,6 +4,7 @@ import RGBSplitFilter from 'fx/rgb-split-filter.js';
 import ParticleDrift from 'fx/particle-drift.js';
 import Animations from 'config/animations.js';
 import StateNavButton from 'menu/state-nav-button.js';
+import TapEffect from 'main/tap-effect.js';
 
 //This page shows the controls
 class TutorialThree extends Phaser.State {
@@ -19,6 +20,9 @@ class TutorialThree extends Phaser.State {
 		//-------------------FX / AMBIENCE--------------------------------------------------------------------------------------------
 		this.game.stage.filters = null;
 		new ParticleDrift(this.game, [new RGBSplitFilter()]);
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		/*	
 				-------------------PAGE TWO-------------------------------------------------------------------------------------------------

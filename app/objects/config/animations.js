@@ -58,7 +58,15 @@ const Animations = {
 		loop: true,
 		speed: 15,
 		frames: Phaser.Animation.generateFrameNames('colorBlob_', 0, 15, '', 2)
+	},
+
+	TAP_EFFECT: {
+		name: 'expand',
+		loop: false,
+		speed: 29,
+		frames: Phaser.Animation.generateFrameNames('tap_effect_', 0, 10, '', 2)
 	}
+
 }
 
 export default Animations;

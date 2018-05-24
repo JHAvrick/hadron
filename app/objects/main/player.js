@@ -18,6 +18,8 @@ class Player extends Phaser.Sprite {
 			this.game.input.onDown.add(this.tapMove, this);
 			this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT).onDown.add(this.keyLeft, this);
 			this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT).onDown.add(this.keyRight, this);
+			this.game.input.keyboard.addKey(Phaser.Keyboard.A).onDown.add(this.keyLeft, this);
+			this.game.input.keyboard.addKey(Phaser.Keyboard.D).onDown.add(this.keyRight, this);
 
 			//Signals/Evemts
 			this.onMove = new Phaser.Signal();

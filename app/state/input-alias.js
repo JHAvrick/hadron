@@ -6,6 +6,7 @@ import ScoresSprites from 'config/scores-sprites.js';
 import ScoreRequest from 'results/score-request.js';
 import BitmapTextInput from 'display/text-input.js';
 import SoftKeyboardSimple from 'display/soft-keyboard-simple.js';
+import TapEffect from 'main/tap-effect.js';
 
 class InputAlias extends Phaser.State {
 
@@ -17,6 +18,9 @@ class InputAlias extends Phaser.State {
 		var forge = this.game.plugins.forge;
 		this.stats = this.game.plugins.stats;
 		this.settings = this.game.plugins.settings;
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//FX
 		this.game.stage.filters = null;

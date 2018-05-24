@@ -3,7 +3,7 @@ import ParticleDrift from 'fx/particle-drift.js';
 import StatsDisplay from 'results/stats-display.js';
 import FadeTransition from 'fx/fade-transition.js';
 import ScoresSprites from 'config/scores-sprites.js';
-
+import TapEffect from 'main/tap-effect.js';
 import StateNavButton from 'menu/state-nav-button.js';
 import ScoreRequest from 'results/score-request.js';
 
@@ -23,6 +23,9 @@ class Scores extends Phaser.State {
 
 		this.statsDisplay = new StatsDisplay(this.game, true);
 		this.statsDisplay.reveal(null, true); 
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//Labels
 		var header = forge.bitmapText(ScoresSprites.BEST_HEADER, '50%', '10%', 'Modeka');

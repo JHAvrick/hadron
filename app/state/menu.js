@@ -5,6 +5,7 @@ import AudioToggle from 'util/audio-toggle.js';
 import FadeTransition from 'fx/fade-transition.js';
 import ParticleDrift from 'fx/particle-drift.js';
 import RGBSplitFilter from 'fx/rgb-split-filter.js';
+import TapEffect from 'main/tap-effect.js';
 
 class Menu extends Phaser.State {
 	create(){
@@ -27,6 +28,9 @@ class Menu extends Phaser.State {
 
 		//background music
 		this.audio.music('coldwire');
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//Particle drift effect
 		new ParticleDrift(this.game, [RGB]);

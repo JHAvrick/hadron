@@ -12,15 +12,10 @@ class FerrisWheel extends Phaser.Group {
 	}
 
 	_arrangeSprites(){
-
 		var radiansBetween = (2 * Math.PI) / this._sprites.length; //distance between each item
-
-		console.log(radiansBetween);
-
 		for (let i = 0; i < this._sprites.length; i++){
 				this._sprites[i].position = i * radiansBetween; //Position on the circle
 		}
-
 	}
 
 	add(sprite){

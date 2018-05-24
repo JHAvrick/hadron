@@ -69,8 +69,7 @@ class SpriteForge extends Phaser.Plugin {
 		if (!config.name || !config.frames)
 			console.warn("FORGE: It is highly suggested that animation configs include 'name' and 'frames' properties.");
 
-		var anim = sprite.animations.add(config.name || 'anim',
-																		 config.frames || '');
+		var anim = sprite.animations.add(config.name || 'anim', config.frames || '');
 
 		return this.apply(config, anim);
 	}

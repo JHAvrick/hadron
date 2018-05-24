@@ -5,6 +5,7 @@ import ScoresSprites from 'config/scores-sprites.js';
 import StateNavButton from 'menu/state-nav-button.js';
 import ScoreRequest from 'results/score-request.js';
 import LeadersList from 'results/leaders-list.js';
+import TapEffect from 'main/tap-effect.js';
 
 class Leaderboard extends Phaser.State {
 
@@ -19,6 +20,9 @@ class Leaderboard extends Phaser.State {
 		this.game.stage.filters = null;
 		var rgb = new RGBSplitFilter();
 		new ParticleDrift(this.game, [rgb]);
+
+		//Effect when player taps
+		let tapEffect = new TapEffect(this.game);
 
 		//Labels
 		var header = forge.bitmapText(ScoresSprites.HEADER, '50%', '10%', 'Modeka');

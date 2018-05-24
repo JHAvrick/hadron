@@ -1,7 +1,20 @@
 class Boot extends Phaser.State {
 
 	init(){
-        //  Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
+
+        //This is specifically for itch.io and is necessary to allow the game
+        //to pause properly when the back button is pressed on mobile. If Phaser
+        //is not paused, a WegGL error will be thrown and the game will not resume
+        //properly.
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            window.onresize = () => {
+                this.game.paused = this.game.paused ? false : true;
+                console.log("Phaser Pause Toggled");
+            }          
+        }
+
+
+        //Phaser will automatically pause if the browser tab the game is in loses focus. You can disable that here:
         //this.stage.disableVisibilityChange = true;
         this.game.input.maxPointers = 1;
 
